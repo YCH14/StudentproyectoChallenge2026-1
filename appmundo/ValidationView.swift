@@ -1,8 +1,18 @@
+//
+//  ValidationView 2.swift
+//  appmundo
+//
+//  Created by Yaretzi Calzontzi Hernández on 15/10/25.
+//
+
+
 import SwiftUI
 
 struct ValidationView: View {
-    // Para el botón de "Atrás" automático (se oculta)
     @Environment(\.dismiss) var dismiss
+    
+    // CLAVE: Acceso a la función de navegación a la raíz (popToRoot)
+    @EnvironmentObject var navigationManager: NavigationManager 
     
     // Variables de Estado para la animación y navegación
     @State private var validationProgress: Double = 0.0
@@ -57,7 +67,6 @@ struct ValidationView: View {
                     // Parte que avanza con el gradiente (se anima con 'validationProgress')
                     Capsule()
                         .fill(progressAnimationGradient)
-                        // Calcula el ancho basado en el progreso actual (280 es el ancho total de la barra)
                         .frame(width: max(30, CGFloat(validationProgress) * 280), height: 18)
                         .animation(.linear(duration: 0.5), value: validationProgress) // Animación suave
                 }
@@ -73,22 +82,30 @@ struct ValidationView: View {
                 Spacer()
             }
         }
-        // Deshabilita el botón de volver, ya que es una pantalla de carga
-        .navigationBarBackButtonHidden(true)
+        
+        // Deshabilita el botón de volver nativo
+        .navigationBarBackButtonHidden(true) 
+        
+        // Botón "Cancelar" que vuelve a la raíz (TicketScannerView)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button("Cancelar") {
+                    navigationManager.popToRoot() // Vuelve a TicketScannerView
+                }
+                .foregroundColor(.blue)
+            }
+        }
         
         // Ejecuta la lógica de simulación de carga al aparecer la vista
         .onAppear {
             startValidationSimulation()
         }
         
-        // MODIFICACIÓN CLAVE: Lógica de autodestrucción (Doble Pop)
+        // Lógica de autodestrucción (Doble Pop): Necesaria para que el botón 'Volver a escanear' funcione
         .onDisappear {
-            // Si la navegación NO fue a la vista de éxito ni de falla, significa
-            // que el usuario presionó 'dismiss()' desde la FailureView y queremos
-            // seguir retrocediendo hasta ScannerView.
+            // Si NO navegamos al resultado, significa que regresamos desde FailureView.
             if !shouldNavigateToResult && !shouldNavigateToFailure {
-                // Esto hace que ValidationView se cierre inmediatamente después de reaparecer.
-                dismiss()
+                dismiss() // Cierra ValidationView y revela ScannerView
             }
         }
         
@@ -142,6 +159,7 @@ struct ValidationView_Previews: PreviewProvider {
         NavigationStack {
             ValidationView()
         }
+        // Inyección necesaria para el Preview
+        .environmentObject(NavigationManager()) 
     }
 }
-

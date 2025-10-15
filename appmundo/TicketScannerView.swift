@@ -1,10 +1,3 @@
-//
-//  ContentView.swift
-//  appMundial
-//
-//  Created by Yaretzi Calzontzi Hernández on 06/10/25.
-//
-
 import SwiftUI
 
 struct TicketScannerView: View {
@@ -35,41 +28,40 @@ struct TicketScannerView: View {
                     .padding(.top, -20)
 
                 // Caja central
-                VStack(spacing: 40) {
+                VStack(spacing: 20) {
                     Text("Estás list@ para una\nexperiencia inolvidable?")
                         .font(.title3)
                         .fontWeight(.semibold)
                         .multilineTextAlignment(.center)
                         .foregroundColor(.white)
-                        .padding(.top, 40)
+                        .padding(.top, 20)
                     
-
+                    // --- BOTÓN DE NAVEGACIÓN A SCANNERVIEW ---
                     NavigationLink {
-
                         ScannerView()
                     } label: {
-                        // El diseño de tu botón
                         Text("Continuar con el escaneo")
                             .font(.subheadline)
                             .fontWeight(.bold)
                             .foregroundColor(.white)
-                            .padding(.horizontal, 30)
-                            .padding(.vertical, 10)
+                            .padding(.horizontal, 25)
+                            .padding(.vertical, 12)
                             .background(
                                 RoundedRectangle(cornerRadius: 30)
                                     .fill(Color.blue)
                             )
+                        // CLAVE: Asegura que el área de toque funcione
+                        .contentShape(Rectangle())
                     }
-
                     .buttonStyle(PlainButtonStyle())
-                    .padding(.bottom, 40)
+                    .padding(.bottom, 20)
                 }
                 .frame(maxWidth: .infinity)
                 .background(
                     RoundedRectangle(cornerRadius: 40)
                         .fill(boxColor)
                         .shadow(radius: 10)
-                        .frame(height:180)
+                        .frame(height: 180)
                 )
                 .padding(.horizontal, 40)
                 .padding(.vertical, 30)
@@ -78,25 +70,20 @@ struct TicketScannerView: View {
 
                 // Mascota
                 Image("MascotasImage")
-                .resizable()
-                .scaledToFit()
-
-                .frame(width: 450, height: 300)
-                .padding(.bottom, -80)
-                
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 450, height: 300)
+                    .padding(.bottom, -80)
             }
             .navigationBarHidden(true)
         }
     }
 }
 
-
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        
         NavigationStack {
             TicketScannerView()
         }
     }
 }
-

@@ -10,9 +10,22 @@
 		1B88C30F2EA03B1000ED176F /* appmundo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = appmundo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		1B88C3462EA0458500ED176F /* Exceptions for "appmundo" folder in "appmundo" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 1B88C30E2EA03B1000ED176F /* appmundo */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		1B88C3112EA03B1000ED176F /* appmundo */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				1B88C3462EA0458500ED176F /* Exceptions for "appmundo" folder in "appmundo" target */,
+			);
 			path = appmundo;
 			sourceTree = "<group>";
 		};
@@ -254,6 +267,8 @@
 				DEVELOPMENT_ASSET_PATHS = "\"appmundo/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = appmundo/Info.plist;
+				INFOPLIST_KEY_NSFileProviderDomainUsageDescription = "Necesitamos acceder a tu cámara para validar el código";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -282,6 +297,8 @@
 				DEVELOPMENT_ASSET_PATHS = "\"appmundo/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = appmundo/Info.plist;
+				INFOPLIST_KEY_NSFileProviderDomainUsageDescription = "Necesitamos acceder a tu cámara para validar el código";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
